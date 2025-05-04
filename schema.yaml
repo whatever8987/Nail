@@ -1,0 +1,1833 @@
+openapi: 3.0.3
+info:
+  title: My Salon Project API
+  version: 1.0.0
+  description: API documentation for the Salon Site project, covering users, salons,
+    blog, payments, etc.
+paths:
+  /api/auth/change-password/:
+    put:
+      operationId: api_auth_change_password_update
+      description: Changes the password for the currently logged-in user.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChangePassword'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePassword'
+          description: ''
+    patch:
+      operationId: api_auth_change_password_partial_update
+      description: Changes the password for the currently logged-in user.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedChangePassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedChangePassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedChangePassword'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePassword'
+          description: ''
+  /api/auth/login/:
+    post:
+      operationId: api_auth_login_create
+      description: Authenticate a user using username and password, returns user details
+        on success.
+      summary: User Login
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/auth/logout/:
+    post:
+      operationId: api_auth_logout_create
+      description: Logs out the currently authenticated user.
+      summary: User Logout
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutResponse'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/auth/profile/:
+    get:
+      operationId: api_auth_profile_retrieve
+      description: Gets or updates the profile of the currently logged-in user.
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: api_auth_profile_update
+      description: Gets or updates the profile of the currently logged-in user.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfileUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserProfileUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserProfileUpdate'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileUpdate'
+          description: ''
+    patch:
+      operationId: api_auth_profile_partial_update
+      description: Gets or updates the profile of the currently logged-in user.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfileUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfileUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfileUpdate'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileUpdate'
+          description: ''
+  /api/auth/register/:
+    post:
+      operationId: api_auth_register_create
+      description: Registers a new user.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Register'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Register'
+        required: true
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Register'
+          description: ''
+  /api/blog/comments/{id}/:
+    delete:
+      operationId: api_blog_comments_destroy
+      description: Deletes a blog comment.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this blog comment.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/blog/comments/{id}/approve/:
+    post:
+      operationId: api_blog_comments_approve_create
+      description: |-
+        API endpoint for moderation actions on comments (approve, delete).
+        Accessed via /api/blog/comments/{comment_pk}/action/
+        Requires Admin permissions.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this blog comment.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogComment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BlogComment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BlogComment'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogComment'
+          description: ''
+  /api/blog/posts/:
+    get:
+      operationId: api_blog_posts_list
+      description: |-
+        API endpoint for Blog Posts. Supports CRUD, filtering, and comment management.
+        Uses slug for detail lookups.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBlogPostListList'
+          description: ''
+    post:
+      operationId: api_blog_posts_create
+      description: |-
+        API endpoint for Blog Posts. Supports CRUD, filtering, and comment management.
+        Uses slug for detail lookups.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogPost'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BlogPost'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BlogPost'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+          description: ''
+  /api/blog/posts/{slug}/:
+    get:
+      operationId: api_blog_posts_retrieve
+      description: Override retrieve to increment view count.
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+          description: ''
+    put:
+      operationId: api_blog_posts_update
+      description: |-
+        API endpoint for Blog Posts. Supports CRUD, filtering, and comment management.
+        Uses slug for detail lookups.
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogPost'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BlogPost'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BlogPost'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+          description: ''
+    patch:
+      operationId: api_blog_posts_partial_update
+      description: |-
+        API endpoint for Blog Posts. Supports CRUD, filtering, and comment management.
+        Uses slug for detail lookups.
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedBlogPost'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedBlogPost'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedBlogPost'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+          description: ''
+    delete:
+      operationId: api_blog_posts_destroy
+      description: |-
+        API endpoint for Blog Posts. Supports CRUD, filtering, and comment management.
+        Uses slug for detail lookups.
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/blog/posts/{slug}/comments/:
+    get:
+      operationId: api_blog_posts_comments_retrieve
+      description: Lists comments for a specific blog post.
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+          description: ''
+    post:
+      operationId: api_blog_posts_comments_create
+      description: Creates a new comment on a specific blog post.
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogPost'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BlogPost'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BlogPost'
+        required: true
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+          description: ''
+  /api/core/stats/:
+    get:
+      operationId: api_core_stats_retrieve
+      description: |-
+        API endpoint to retrieve the site-wide statistics.
+        Requires admin privileges.
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stats'
+          description: ''
+  /api/payments/create-intent/:
+    post:
+      operationId: api_payments_create_intent_create
+      description: Initializes a Stripe Payment Intent for a one-time payment.
+      summary: Create Payment Intent
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentIntentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PaymentIntentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PaymentIntentRequest'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentIntentResponse'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/payments/create-subscription/:
+    post:
+      operationId: api_payments_create_subscription_create
+      description: Initiates a Stripe subscription for the selected plan.
+      summary: Create Subscription
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/payments/plans/:
+    get:
+      operationId: api_payments_plans_list
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSubscriptionPlanList'
+          description: ''
+  /api/payments/plans/{id}/:
+    get:
+      operationId: api_payments_plans_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this subscription plan.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPlan'
+          description: ''
+  /api/salons/:
+    get:
+      operationId: api_salons_list
+      description: |-
+        API endpoint for Salons.
+        Handles CRUD, retrieving by sample_url, claiming, and marking leads as contacted.
+        Permissions vary by action.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSalonList'
+          description: ''
+    post:
+      operationId: api_salons_create
+      description: |-
+        API endpoint for Salons.
+        Handles CRUD, retrieving by sample_url, claiming, and marking leads as contacted.
+        Permissions vary by action.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Salon'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Salon'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Salon'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Salon'
+          description: ''
+  /api/salons/{id}/:
+    get:
+      operationId: api_salons_retrieve
+      description: |-
+        API endpoint for Salons.
+        Handles CRUD, retrieving by sample_url, claiming, and marking leads as contacted.
+        Permissions vary by action.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this salon.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Salon'
+          description: ''
+    put:
+      operationId: api_salons_update
+      description: |-
+        API endpoint for Salons.
+        Handles CRUD, retrieving by sample_url, claiming, and marking leads as contacted.
+        Permissions vary by action.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this salon.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Salon'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Salon'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Salon'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Salon'
+          description: ''
+    patch:
+      operationId: api_salons_partial_update
+      description: |-
+        API endpoint for Salons.
+        Handles CRUD, retrieving by sample_url, claiming, and marking leads as contacted.
+        Permissions vary by action.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this salon.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSalon'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSalon'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSalon'
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Salon'
+          description: ''
+    delete:
+      operationId: api_salons_destroy
+      description: |-
+        API endpoint for Salons.
+        Handles CRUD, retrieving by sample_url, claiming, and marking leads as contacted.
+        Permissions vary by action.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this salon.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/salons/{id}/claim/:
+    post:
+      operationId: api_salons_claim_create
+      description: |-
+        Allows an authenticated user to claim an unclaimed salon.
+        Updates ownership and statistics.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this salon.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Salon'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Salon'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Salon'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Salon'
+          description: ''
+  /api/salons/contact-leads/:
+    post:
+      operationId: api_salons_contact_leads_create
+      description: |-
+        Admin action to mark multiple salons (by ID) as having been contacted.
+        Updates contact_status and recalculates pending contacts statistics.
+        Expects JSON: {"leadIds": [1, 2, ...]}
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Salon'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Salon'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Salon'
+        required: true
+      security:
+      - cookieAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Salon'
+          description: ''
+  /api/salons/sample/{sample_url}/:
+    get:
+      operationId: api_salons_sample_retrieve
+      description: Retrieves a single salon instance using its unique 'sample_url'.
+      parameters:
+      - in: path
+        name: sample_url
+        schema:
+          type: string
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Salon'
+          description: ''
+  /api/templates/:
+    get:
+      operationId: api_templates_list
+      description: API endpoint that allows Templates to be viewed. Read-only.
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTemplateList'
+          description: ''
+  /api/templates/{id}/:
+    get:
+      operationId: api_templates_retrieve
+      description: API endpoint that allows Templates to be viewed. Read-only.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this template.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template'
+          description: ''
+  /stripe/webhook/:
+    post:
+      operationId: stripe_webhook_create
+      description: Receives and processes events sent from Stripe.
+      summary: Stripe Webhook Handler
+      tags:
+      - stripe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: {}
+      security:
+      - cookieAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookResponse'
+          description: ''
+components:
+  schemas:
+    BlogComment:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        post:
+          type: integer
+          writeOnly: true
+        user:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          readOnly: true
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        content:
+          type: string
+        approved:
+          type: boolean
+          readOnly: true
+          description: Comments must be approved to be publicly visible
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - approved
+      - content
+      - created_at
+      - id
+      - user
+    BlogPost:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          readOnly: true
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+          pattern: ^[-a-zA-Z0-9_]+$
+        content:
+          type: string
+        excerpt:
+          type: string
+          nullable: true
+          description: A short summary of the post (optional)
+        cover_image:
+          type: string
+          format: uri
+          nullable: true
+          description: URL of the main image for the post
+          maxLength: 500
+        author:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          readOnly: true
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        tags:
+          description: List of tags, e.g., ['manicure', 'trends']
+        published:
+          type: boolean
+          description: Check this to make the post visible to the public
+        featured:
+          type: boolean
+          description: Check this to feature the post (e.g., on homepage)
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: 'Optional: Set a future date/time to publish'
+        view_count:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlogComment'
+          readOnly: true
+      required:
+      - author
+      - comments
+      - content
+      - created_at
+      - id
+      - slug
+      - title
+      - updated_at
+      - view_count
+    BlogPostList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          readOnly: true
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+          pattern: ^[-a-zA-Z0-9_]+$
+        excerpt:
+          type: string
+          nullable: true
+          description: A short summary of the post (optional)
+        cover_image:
+          type: string
+          format: uri
+          nullable: true
+          description: URL of the main image for the post
+          maxLength: 500
+        author:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          readOnly: true
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        tags:
+          description: List of tags, e.g., ['manicure', 'trends']
+        published:
+          type: boolean
+          description: Check this to make the post visible to the public
+        featured:
+          type: boolean
+          description: Check this to feature the post (e.g., on homepage)
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: 'Optional: Set a future date/time to publish'
+        view_count:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        comments_count:
+          type: integer
+          readOnly: true
+      required:
+      - author
+      - comments_count
+      - created_at
+      - id
+      - slug
+      - title
+      - view_count
+    CategoryEnum:
+      enum:
+      - nail_art
+      - marketing
+      - business_advice
+      - trends
+      - product_reviews
+      - tutorials
+      - other
+      type: string
+      description: |-
+        * `nail_art` - Nail Art
+        * `marketing` - Marketing
+        * `business_advice` - Business Advice
+        * `trends` - Trends
+        * `product_reviews` - Product Reviews
+        * `tutorials` - Tutorials
+        * `other` - Other
+    ChangePassword:
+      type: object
+      description: Serializer for password change endpoint.
+      properties:
+        current_password:
+          type: string
+        new_password:
+          type: string
+        new_password2:
+          type: string
+          title: Confirm New Password
+      required:
+      - current_password
+      - new_password
+      - new_password2
+    ContactStatusEnum:
+      enum:
+      - notContacted
+      - contacted
+      - interested
+      - notInterested
+      - subscribed
+      type: string
+      description: |-
+        * `notContacted` - Not Contacted
+        * `contacted` - Contacted
+        * `interested` - Interested
+        * `notInterested` - Not Interested
+        * `subscribed` - Subscribed
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+      - password
+      - username
+    LogoutResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+      - message
+    PaginatedBlogPostListList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlogPostList'
+    PaginatedSalonList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Salon'
+    PaginatedSubscriptionPlanList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubscriptionPlan'
+    PaginatedTemplateList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template'
+    PatchedBlogPost:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          readOnly: true
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+          pattern: ^[-a-zA-Z0-9_]+$
+        content:
+          type: string
+        excerpt:
+          type: string
+          nullable: true
+          description: A short summary of the post (optional)
+        cover_image:
+          type: string
+          format: uri
+          nullable: true
+          description: URL of the main image for the post
+          maxLength: 500
+        author:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          readOnly: true
+        category:
+          $ref: '#/components/schemas/CategoryEnum'
+        tags:
+          description: List of tags, e.g., ['manicure', 'trends']
+        published:
+          type: boolean
+          description: Check this to make the post visible to the public
+        featured:
+          type: boolean
+          description: Check this to feature the post (e.g., on homepage)
+        published_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: 'Optional: Set a future date/time to publish'
+        view_count:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlogComment'
+          readOnly: true
+    PatchedChangePassword:
+      type: object
+      description: Serializer for password change endpoint.
+      properties:
+        current_password:
+          type: string
+        new_password:
+          type: string
+        new_password2:
+          type: string
+          title: Confirm New Password
+    PatchedSalon:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        location:
+          type: string
+          description: e.g., City, State or Neighborhood
+          maxLength: 200
+        address:
+          type: string
+          nullable: true
+          maxLength: 255
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 25
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        description:
+          type: string
+          nullable: true
+        services:
+          description: List of services, e.g., ['Manicure - $30', 'Pedicure - $45']
+        opening_hours:
+          type: string
+          nullable: true
+          description: 'e.g., Mon-Fri: 9am-7pm\nSat: 10am-5pm'
+        sample_url:
+          type: string
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        claimed:
+          type: boolean
+          readOnly: true
+        claimed_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        contact_status:
+          $ref: '#/components/schemas/ContactStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        owner:
+          type: integer
+          readOnly: true
+          nullable: true
+        template:
+          type: integer
+          nullable: true
+    PatchedUserProfileUpdate:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 20
+    PaymentIntentRequest:
+      type: object
+      properties:
+        amount_cents:
+          type: integer
+          minimum: 1
+        description:
+          type: string
+        currency:
+          type: string
+          default: usd
+          maxLength: 3
+      required:
+      - amount_cents
+    PaymentIntentResponse:
+      type: object
+      properties:
+        clientSecret:
+          type: string
+        intentId:
+          type: string
+      required:
+      - clientSecret
+      - intentId
+    Register:
+      type: object
+      description: Serializer for user registration.
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        password:
+          type: string
+          writeOnly: true
+        password2:
+          type: string
+          writeOnly: true
+          title: Confirm Password
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 20
+      required:
+      - email
+      - password
+      - password2
+      - username
+    RoleEnum:
+      enum:
+      - user
+      - admin
+      type: string
+      description: |-
+        * `user` - User
+        * `admin` - Admin
+    Salon:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        location:
+          type: string
+          description: e.g., City, State or Neighborhood
+          maxLength: 200
+        address:
+          type: string
+          nullable: true
+          maxLength: 255
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 25
+        email:
+          type: string
+          format: email
+          nullable: true
+          maxLength: 254
+        description:
+          type: string
+          nullable: true
+        services:
+          description: List of services, e.g., ['Manicure - $30', 'Pedicure - $45']
+        opening_hours:
+          type: string
+          nullable: true
+          description: 'e.g., Mon-Fri: 9am-7pm\nSat: 10am-5pm'
+        sample_url:
+          type: string
+          description: Unique URL-friendly identifier (leave blank to auto-generate)
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        claimed:
+          type: boolean
+          readOnly: true
+        claimed_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        contact_status:
+          $ref: '#/components/schemas/ContactStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        owner:
+          type: integer
+          readOnly: true
+          nullable: true
+        template:
+          type: integer
+          nullable: true
+      required:
+      - claimed
+      - claimed_at
+      - created_at
+      - id
+      - location
+      - name
+      - owner
+      - updated_at
+    Stats:
+      type: object
+      properties:
+        total_salons:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        sample_sites:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          description: Count of unclaimed salons
+        active_subscriptions:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        pending_contacts:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          description: Salons with 'notContacted' status
+        last_updated:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - last_updated
+    SubscriptionPlan:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        price_cents:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          description: Price in cents (e.g., 7900 for $79.00)
+        display_price:
+          type: string
+          description: Calculates and returns the formatted price string.
+          readOnly: true
+        currency:
+          type: string
+          maxLength: 3
+        features:
+          description: List of features included in the plan
+        stripe_price_id:
+          type: string
+          description: Stripe Price ID (e.g., price_xxxxxxxxxxxx)
+          maxLength: 255
+        trial_period_days:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          description: Number of trial days (0 for no trial)
+        is_active:
+          type: boolean
+          readOnly: true
+          description: Whether this plan is available for new subscriptions
+        is_popular:
+          type: boolean
+          description: Mark as popular for highlighting in UI
+      required:
+      - display_price
+      - id
+      - is_active
+      - name
+      - price_cents
+      - stripe_price_id
+    SubscriptionRequest:
+      type: object
+      properties:
+        plan_id:
+          type: integer
+      required:
+      - plan_id
+    SubscriptionResponse:
+      type: object
+      properties:
+        subscriptionId:
+          type: string
+        clientSecret:
+          type: string
+          nullable: true
+        message:
+          type: string
+      required:
+      - subscriptionId
+    Template:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        preview_image_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 500
+        features: {}
+        is_mobile_optimized:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - name
+      - updated_at
+    User:
+      type: object
+      description: Serializer for displaying User information (read-only for sensitive
+        fields).
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 20
+        role:
+          allOf:
+          - $ref: '#/components/schemas/RoleEnum'
+          readOnly: true
+      required:
+      - email
+      - id
+      - role
+      - username
+    UserProfileUpdate:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 20
+    WebhookResponse:
+      type: object
+      properties:
+        received:
+          type: boolean
+      required:
+      - received
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
