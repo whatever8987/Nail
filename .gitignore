@@ -40,4 +40,4 @@ bower_components/
 # Backend (Python)
 *.egg-info/
 dist/
-build/
+build/.env
