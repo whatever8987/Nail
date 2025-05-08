@@ -1,0 +1,26 @@
+# --- General ignored files ---
+.DS_Store
+*.log
+*.swp
+*.swo
+
+# --- Python / Django specific ---
+*.pyc
+__pycache__/
+myenv/ # <-- Replace 'myenv/' if your virtual environment folder is named differently (yours is 'venv/')
+venv/  # <-- Add venv/ as per your ls output
+db.sqlite3
+media/ # Assuming you don't want uploaded media in version control
+staticfiles/ # Assuming this is your collected static files directory
+celerybeat.pid
+*.sqlite3
+.env # Local environment variables file
+
+# --- Node / React specific (inside NailSitePro folder) ---
+NailSitePro/node_modules/
+NailSitePro/dist/   # Vite build output
+NailSitePro/build/  # Create-React-App build output (if applicable)
+NailSitePro/package-lock.json # Or yarn.lock if you use yarn
+NailSitePro/.env # React local environment variables file
+NailSitePro/.parcel-cache/ # If using Parcel bundler
+

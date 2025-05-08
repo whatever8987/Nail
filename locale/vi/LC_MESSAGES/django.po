@@ -1,0 +1,372 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-08 02:19+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Vietnamese <LL@li.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: blog/models.py:15
+msgid "Nail Art"
+msgstr "Nghệ thuật làm móng"
+
+#: blog/models.py:16
+msgid "Marketing"
+msgstr "Tiếp thị"
+
+#: blog/models.py:17
+msgid "Business Advice"
+msgstr "Lời khuyên kinh doanh"
+
+#: blog/models.py:18
+msgid "Trends"
+msgstr "Xu hướng"
+
+#: blog/models.py:19
+msgid "Product Reviews"
+msgstr "Đánh giá sản phẩm"
+
+#: blog/models.py:20
+msgid "Tutorials"
+msgstr "Hướng dẫn"
+
+#: blog/models.py:21
+msgid "Other"
+msgstr "Khác"
+
+#: blog/models.py:26
+msgid "Title"
+msgstr "Tiêu đề"
+
+#: blog/models.py:32 salons/models.py:118
+msgid "Unique URL-friendly identifier (leave blank to auto-generate)"
+msgstr "Định danh thân thiện với URL (để trống để tự động tạo)"
+
+#: blog/models.py:33
+msgid "Slug"
+msgstr "Slug"
+
+#: blog/models.py:36 blog/models.py:156
+msgid "Content"
+msgstr "Nội dung"
+
+#: blog/models.py:41
+msgid "A short summary of the post (optional)"
+msgstr "Tóm tắt ngắn về bài viết (tùy chọn)"
+
+#: blog/models.py:42
+msgid "Excerpt"
+msgstr "Trích dẫn"
+
+#: blog/models.py:48
+msgid "URL of the main image for the post"
+msgstr "URL của hình ảnh chính cho bài viết"
+
+#: blog/models.py:49
+msgid "Cover Image"
+msgstr "Ảnh bìa"
+
+#: blog/models.py:56
+msgid "Author"
+msgstr "Tác giả"
+
+#: blog/models.py:62
+msgid "Category"
+msgstr "Danh mục"
+
+#: blog/models.py:67
+msgid "List of tags, e.g., [\"manicure\", \"trends\"]"
+msgstr "Danh sách các thẻ, ví dụ: [\"manicure\", \"xu hướng\"]"
+
+#: blog/models.py:68
+msgid "Tags"
+msgstr "Thẻ"
+
+#: blog/models.py:74
+msgid "Check this to make the post visible to the public"
+msgstr "Chọn mục này để công khai bài viết"
+
+#: blog/models.py:75
+msgid "Published"
+msgstr "Đã xuất bản"
+
+#: blog/models.py:79
+msgid "Check this to feature the post (e.g., on homepage)"
+msgstr "Chọn mục này để nổi bật bài viết (ví dụ: trên trang chủ)"
+
+#: blog/models.py:80
+msgid "Featured"
+msgstr "Nổi bật"
+
+#: blog/models.py:85
+msgid "Optional: Set a future date/time to publish"
+msgstr "Tùy chọn: Đặt ngày/giờ trong tương lai để xuất bản"
+
+#: blog/models.py:86
+msgid "Published At"
+msgstr "Xuất bản lúc"
+
+#: blog/models.py:93
+msgid "View Count"
+msgstr "Lượt xem"
+
+#: blog/models.py:99 blog/models.py:166 payments/models.py:57
+#: salons/models.py:41 salons/models.py:157
+msgid "Created At"
+msgstr "Tạo lúc"
+
+#: blog/models.py:103 blog/models.py:170 payments/models.py:61
+#: salons/models.py:45 salons/models.py:161
+msgid "Updated At"
+msgstr "Cập nhật lúc"
+
+#: blog/models.py:108
+msgid "Blog Post"
+msgstr "Bài đăng blog"
+
+#: blog/models.py:109
+msgid "Blog Posts"
+msgstr "Các bài đăng blog"
+
+#: blog/models.py:135
+msgid "Post"
+msgstr "Bài đăng"
+
+#: blog/models.py:143 users/models.py:10 users/models.py:64
+msgid "User"
+msgstr "Người dùng"
+
+#: blog/models.py:148
+msgid "Name"
+msgstr "Tên"
+
+#: blog/models.py:152 salons/models.py:91 users/models.py:42
+msgid "Email Address"
+msgstr "Địa chỉ email"
+
+#: blog/models.py:160
+msgid "Comments must be approved to be publicly visible"
+msgstr "Bình luận phải được phê duyệt để hiển thị công khai"
+
+#: blog/models.py:161
+msgid "Approved"
+msgstr "Đã phê duyệt"
+
+#: blog/models.py:175
+msgid "Blog Comment"
+msgstr "Bình luận blog"
+
+#: blog/models.py:176
+msgid "Blog Comments"
+msgstr "Các bình luận blog"
+
+#: blog/models.py:183
+#, python-format
+msgid "Comment by %(username)s on %(title)s"
+msgstr "Bình luận bởi %(username)s trên %(title)s"
+
+#: blog/models.py:185
+#, python-format
+msgid "Comment by %(name)s on %(title)s"
+msgstr "Bình luận bởi %(name)s trên %(title)s"
+
+#: blog/models.py:187
+#, python-format
+msgid "Anonymous comment on %(title)s"
+msgstr "Bình luận ẩn danh trên %(title)s"
+
+#: payments/models.py:9
+msgid "Plan Name"
+msgstr "Tên gói"
+
+#: payments/models.py:13 salons/models.py:19 salons/models.py:98
+msgid "Description"
+msgstr "Mô tả"
+
+#: payments/models.py:16
+msgid "Price in cents (e.g., 7900 for $79.00)"
+msgstr "Giá bằng cent (ví dụ: 7900 cho $79.00)"
+
+#: payments/models.py:17
+msgid "Price (Cents)"
+msgstr "Giá (Cent)"
+
+#: payments/models.py:23
+msgid "Currency"
+msgstr "Tiền tệ"
+
+#: payments/models.py:28
+msgid "List of features included in the plan"
+msgstr "Danh sách tính năng bao gồm trong gói"
+
+#: payments/models.py:29 salons/models.py:33
+msgid "Features"
+msgstr "Tính năng"
+
+#: payments/models.py:35
+msgid "Stripe Price ID (e.g., price_xxxxxxxxxxxx)"
+msgstr "ID giá Stripe (ví dụ: price_xxxxxxxxxxxx)"
+
+#: payments/models.py:36
+msgid "Stripe Price ID"
+msgstr "ID giá Stripe"
+
+#: payments/models.py:40
+msgid "Number of trial days (0 for no trial)"
+msgstr "Số ngày dùng thử (0 để không dùng thử)"
+
+#: payments/models.py:41
+msgid "Trial Period (Days)"
+msgstr "Thời gian dùng thử (ngày)"
+
+#: payments/models.py:45
+msgid "Whether this plan is available for new subscriptions"
+msgstr "Gói này có sẵn cho đăng ký mới hay không"
+
+#: payments/models.py:46
+msgid "Is Active"
+msgstr "Đang hoạt động"
+
+#: payments/models.py:50
+msgid "Mark as popular for highlighting in UI"
+msgstr "Đánh dấu là phổ biến để làm nổi bật trong giao diện"
+
+#: payments/models.py:51
+msgid "Is Popular"
+msgstr "Phổ biến"
+
+#: payments/models.py:65
+msgid "Subscription Plan"
+msgstr "Gói đăng ký"
+
+#: payments/models.py:66
+msgid "Subscription Plans"
+msgstr "Các gói đăng ký"
+
+#: salons/models.py:15
+msgid "Template Name"
+msgstr "Tên mẫu"
+
+#: salons/models.py:26
+msgid "Preview Image"
+msgstr "Ảnh xem trước"
+
+#: salons/models.py:37
+msgid "Is Mobile Optimized"
+msgstr "Tối ưu cho di động"
+
+#: salons/models.py:49 salons/models.py:134
+msgid "Template"
+msgstr "Mẫu"
+
+#: salons/models.py:50
+msgid "Templates"
+msgstr "Các mẫu"
+
+#: salons/models.py:59
+msgid "Not Contacted"
+msgstr "Chưa liên hệ"
+
+#: salons/models.py:60
+msgid "Contacted"
+msgstr "Đã liên hệ"
+
+#: salons/models.py:61
+msgid "Interested"
+msgstr "Quan tâm"
+
+#: salons/models.py:62
+msgid "Not Interested"
+msgstr "Không quan tâm"
+
+#: salons/models.py:63
+msgid "Subscribed"
+msgstr "Đã đăng ký"
+
+#: salons/models.py:69
+msgid "Salon Name"
+msgstr "Tên tiệm"
+
+#: salons/models.py:73
+msgid "e.g., City, State or Neighborhood"
+msgstr "Ví dụ: Thành phố, Bang hoặc Khu vực"
+
+#: salons/models.py:74
+msgid "Location"
+msgstr "Địa điểm"
+
+#: salons/models.py:80
+msgid "Address"
+msgstr "Địa chỉ"
+
+#: salons/models.py:86 users/models.py:24
+msgid "Phone Number"
+msgstr "Số điện thoại"
+
+#: salons/models.py:103
+msgid "List of services, e.g., [\"Manicure - $30\", \"Pedicure - $45\"]"
+msgstr "Danh sách dịch vụ, ví dụ: [\"Manicure - $30\", \"Pedicure - $45\"]"
+
+#: salons/models.py:104
+msgid "Services"
+msgstr "Dịch vụ"
+
+#: salons/models.py:109
+msgid "e.g., Mon-Fri: 9am-7pm\\nSat: 10am-5pm"
+msgstr "Ví dụ: T2-T6: 9h-19h\\nT7: 10h-17h"
+
+#: salons/models.py:110
+msgid "Opening Hours"
+msgstr "Giờ mở cửa"
+
+#: salons/models.py:119
+msgid "Sample URL"
+msgstr "URL mẫu"
+
+#: salons/models.py:127
+msgid "Owner"
+msgstr "Chủ sở hữu"
+
+#: salons/models.py:140
+msgid "Claimed"
+msgstr "Đã nhận"
+
+#: salons/models.py:145
+msgid "Claimed At"
+msgstr "Nhận lúc"
+
+#: salons/models.py:151
+msgid "Contact Status"
+msgstr "Trạng thái liên hệ"
+
+#: salons/models.py:184 users/models.py:31
+msgid "Salon"
+msgstr "Tiệm"
+
+#: salons/models.py:185
+msgid "Salons"
+msgstr "Các tiệm"
+
+#: users/models.py:11
+msgid "Admin"
+msgstr "Quản trị viên"
+
+#: users/models.py:18
+msgid "Role"
+msgstr "Vai trò"
+
+#: users/models.py:65
+msgid "Users"
+msgstr "Người dùng"
