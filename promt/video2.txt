@@ -1,0 +1,67 @@
+Video Length: 75 seconds
+Style: Animated explainer + live-action b-roll
+Voiceover Tone: Friendly, energetic, persuasive
+
+[00:00-00:12] HOOK (Problem)
+Visual:
+
+Quick cuts of:
+👉 Business owner manually posting on 3 different social apps
+👉 Frustrated face reading a negative Google review
+👉 Phone ringing with "Missed Call" notification
+
+Voiceover:
+*"What if you could get MORE customers... while working LESS? (beat) Your competitors are doing it—with a website that works for them 24/7!"*
+
+[00:12-00:25] SOLUTION INTRO
+Visual:
+
+Animated "magic wand" transforming an old website into a sleek new one
+
+"FREE WEBSITE" badge appearing with sparkle effect
+
+Voiceover:
+"We build you a FREE professional website—no upfront costs! But here’s the game-changer..."
+
+[00:25-00:45] FEATURES DEMO
+Visual: Animated phone screen showing:
+
+🤖 Social Auto-Post (Calendar with posts flying to FB/IG/TikTok)
+VO: "Schedule all social posts in one click—done!"
+
+⭐ AI Review Response (Google review notification → AI typing reply)
+VO: "AI instantly responds to reviews with YOUR tone!"
+
+📅 Booking Chatbot (Chatbot saying: "Book your appointment now!")
+*VO: "Your 24/7 booking assistant never sleeps!"*
+
+📞 Call Handling (Call screen: "AI Assistant answering")
+VO: "Missed a call? Our AI takes messages AND books appointments!"
+
+[00:45-01:00] SOCIAL PROOF + HOW IT WORKS
+Visual:
+
+Fake testimonial (Lisa, Nail Salon Owner):
+*"I got 30+ new clients last month without lifting a finger!"*
+
+3-step animation:
+
+💬 "Tell us about your biz" (form filling)
+
+🛠️ "We build your site" (coding animation)
+
+🚀 "AI takes over!" (robot pushing marketing buttons)
+
+Voiceover:
+*"500+ businesses grew with us last month! Just sign up, and we’ll handle the rest—you focus on what you love!"*
+
+[01:00-01:15] CTA (Urgency Close)
+Visual:
+
+Red stamp animation: "LIMITED FREE SETUP!"
+
+Big button: "Claim My Free Website →" [YourURL.com]
+
+Voiceover:
+"This free offer won’t last! Click now and get your automated website before the waiting list starts!"
+

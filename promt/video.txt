@@ -1,0 +1,84 @@
+AI Video Script Prompt
+Objective: Create a 60-90 second promotional video that highlights the key benefits of our free website + automation services for small businesses.
+
+1. Video Style & Tone
+Style: Modern, energetic, and professional (mix of animated graphics + real footage)
+
+Tone: Friendly, persuasive, and benefit-driven (avoid technical jargon)
+
+Music: Upbeat corporate/tech background track
+
+Voiceover: Clear, confident, and engaging (male or female)
+
+2. Target Audience
+Small business owners (salons, restaurants, local shops)
+
+Busy entrepreneurs who want to save time & get more customers
+
+People who struggle with managing social media, bookings, and reviews
+
+3. Key Messages (Prioritize These Benefits)
+✅ "Get a FREE professional website—no upfront cost!"
+✅ "Your website works 24/7 to bring in customers!"
+✅ "Automate social media posts in seconds!"
+✅ "AI responds to reviews & comments for you!"
+✅ "Chatbot books appointments while you sleep!"
+✅ "Never miss a call—AI handles inquiries!"
+✅ "SEO-optimized to rank higher on Google!"
+
+4. Video Structure (60-90 secs)
+1. Hook (0:00 - 0:10)
+
+Visual: Fast montage of frustrated business owners checking phones, posting manually, missing calls.
+
+Voiceover: "Tired of wasting time on social media, reviews, and missed calls? What if your website could do all this for you—for FREE?"
+
+2. Problem (0:10 - 0:20)
+
+Visual: Split-screen—left side (business owner stressed), right side (competitor thriving with automation).
+
+Voiceover: "Most small businesses lose customers because they can’t keep up. But now, you can automate everything!"
+
+3. Solution (0:20 - 0:40)
+
+Visual: Animated website mockup appearing, then transforming into automated features (social posts flying out, chatbot answering, AI responding to reviews).
+
+Voiceover: *"We build you a FREE website packed with AI tools: auto-post to social media, instant review replies, 24/7 booking chatbot, and call handling—so you never miss a lead!"*
+
+4. How It Works (0:40 - 1:00)
+
+Visual: Step-by-step animation:
+
+"Tell us about your business" (form filling animation)
+
+"We build your free website" (website design process)
+
+"AI takes over marketing" (robot managing social media, reviews, calls)
+
+Voiceover: "Just sign up, and we handle the rest. No coding, no stress—just more customers!"
+
+5. Social Proof (1:00 - 1:15) (Optional)
+
+Visual: Fake (or real) testimonials with smiling business owners + stats ("*200+ 5-star reviews!*").
+
+Voiceover: *"Join 1,000+ businesses growing effortlessly with us!"*
+
+6. Call-to-Action (1:15 - End)
+
+Visual: Big "Get Your FREE Website Now" button with URL.
+
+Voiceover:* "Stop wasting time—claim your free website today and let AI grow your business!"
+
+5. Extra Notes for AI Tools
+For Synthesia/Pictory: Specify "Use animated avatars + stock footage of small businesses."
+
+For ChatGPT/DALL-E: Request "a storyboard with scene descriptions."
+
+For Voiceover: "Use a confident, slightly fast-paced tone."
+
+How to Use This Prompt
+For AI Video Tools (Synthesia, Pictory, HeyGen): Paste this prompt and generate.
+
+For ChatGPT/Claude: Ask for a refined script + shot suggestions.
+
+For Human Editors: Use as a brief for freelancers.

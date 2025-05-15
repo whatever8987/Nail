@@ -1,0 +1,21 @@
+# Nail/Dockerfile.backend
+FROM python:3.9-slim-buster # Or your preferred Python version
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /app
+
+# Copy only requirements.txt first to leverage Docker cache
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the entire project.
+# This will copy manage.py, backend/, client/, etc., into /app
+# So, manage.py will be at /app/manage.py
+# Your Django project 'backend' will be at /app/backend/
+COPY . .
+
+# Note: Gunicorn command will be in docker-compose.yml
+# Static files will be collected into /app/staticfiles (as per default STATIC_ROOT setting)
+# Media files will be in /app/media (as per default MEDIA_ROOT setting)

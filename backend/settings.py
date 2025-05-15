@@ -41,9 +41,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware', # Place CORS high
-    'whitenoise.middleware.WhiteNoiseMiddleware', # Place after security, before session
+   'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,7 +52,6 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'tracking.middleware.VisitorTrackingMiddleware',
-    
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -62,7 +61,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'frontend/dist'), # Find React index.html
+            os.path.join(BASE_DIR, 'client/dist'), # Find React index.html
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -99,21 +98,6 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
-
-LANGUAGES = [
-    ('en', ('English')),
-    ('es', ('Spanish')),
-    ('vi', ('Vietnamese')), # <<< Add Vietnamese here
-    # Add other languages here
-]
-
-
-LOCALE_PATHS = [
-    BASE_DIR / 'locale', # Python 3.4+ Path object syntax
-    # If using older Python or prefer string path:
-    # os.path.join(BASE_DIR, 'locale'),
-]
-
 
 # Static files
 STATIC_URL = '/static/'
@@ -192,13 +176,13 @@ else:
     print("\nWARNING: Stripe API key not configured. Stripe integration will fail.\n")
 
 
+# Spectacular (OpenAPI Schema)
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Salon API',
-    'DESCRIPTION': 'API for managing salons and user accounts',
+    'TITLE': 'My Salon Project API',
+    'DESCRIPTION': 'API documentation for the Salon Site project.',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
-    'COMPONENT_SPLIT_REQUEST': True,
-    'SCHEMA_PATH_PREFIX': '/api/',
+    'OAS_VERSION': '3.0.3',
 }
 
 # CORS - Cross-Origin Resource Sharing

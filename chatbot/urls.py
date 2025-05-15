@@ -1,13 +1,12 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import chat
+# chatbot/urls.py
+from django.urls import path
+from .views import chat, conversation_list, conversation_detail
 
+# Add this line:
 app_name = 'chatbot'
 
-# Create a router and register our viewsets with it.
-router = DefaultRouter()
-
-
 urlpatterns = [
-    path('', include(router.urls)),
+    path('chat/', chat, name='chat'),
+    path('conversations/', conversation_list, name='conversation-list'),
+    path('conversations/<uuid:pk>/', conversation_detail, name='conversation-detail'),
 ]

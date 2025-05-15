@@ -18,10 +18,10 @@ class User(AbstractUser):
         verbose_name=_('Role') # <<< Marked verbose_name
     )
     phone_number = models.CharField(
-        max_length=20,
+        max_length=25, # <--- Increase max_length here (was 20)
         blank=True,
         null=True,
-        verbose_name=_('Phone Number') # <<< Marked verbose_name
+        verbose_name=_('Phone Number')
     )
     salon = models.ForeignKey(
         'salons.Salon',
